@@ -6,9 +6,10 @@ class Character:
     y = 0
 
     life = 100
-    display = 'P'
+    display = ''
     xp_reward = 5
     coins = 0
+    char_type = ""
 
     weapon = None
     armor = None
@@ -27,6 +28,9 @@ class Character:
         self.inventory["weapons"] = self.weapon
 
         self.life = conf["life"]
+
+        self.char_type = conf["type"]
+        self.display = conf["char"]
 
     def fight(self, other):
         self.weapon.hit(other)
@@ -66,5 +70,7 @@ class Character:
     def get_y(self):
         return self.y
 
+    def get_type(self):
+        return self.char_type
     def get_display(self):
         return self.display

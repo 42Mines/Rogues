@@ -1,8 +1,9 @@
 
 import curses
 from display import *
+from ai import *
 from Character import Character
-from conf import hero_conf
+from conf import hero_conf, ennemies_conf
 from map import gen_map
 
 # Initialisation of curses
@@ -20,11 +21,11 @@ stdscr.keypad(True)
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]"""
 
 field =[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 4, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-        [0, 0, 0, 4, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -32,7 +33,9 @@ field =[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
 
 hero = Character(3, 3, hero_conf)
-characters = [hero]
+snake = Character(1, 1, ennemies_conf["snake"])
+characters = [hero, snake]
+ennemies = [snake]
 
 while True:
     display(stdscr, field, characters)
@@ -62,9 +65,12 @@ while True:
     if field[hero.get_y()][hero.get_x()] == 2 and count2 == 1:
         gen_map(hero, field)
 
-
+    for ennemy in ennemies:
+        dmg = ai(ennemy, hero, field)
+       # if (dmg != 0):
+        stdscr.addstr(31, 0, "{} did {} damage to player".format(snake.get_type, dmg))
+    
     stdscr.addstr(15, 0, "x = {} ; y = {} ; field = {}".format(hero.get_x(), hero.get_y(), field[hero.get_y()][hero.get_x()]))
-
 
 # QExitiong curses
 curses.nocbreak()

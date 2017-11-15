@@ -34,11 +34,11 @@ def gen_map(hero, map):
     # on ajoute des cases en bas à droite pour jouer
 
     safety = 10
-    if len(map[0]) - hero.getX() < safety * area_to_scan:
+    if len(map[0]) - hero.get_x() < safety * area_to_scan:
         for i in range(len(map[0])):
             map[i] = map[i] + [0 for i in safety * area_to_scan]
 
-    if len(map) - hero.getY() < safety * area_to_scan:
+    if len(map) - hero.get_y() < safety * area_to_scan:
         for i in range(safety * area_to_scan):
             map.append([0 for i in range(len(map[0]))])
 
@@ -63,8 +63,8 @@ def gen_map(hero, map):
         rooms_to_add = randint(1, 4)
 
         for i in range(rooms_to_add):
-            rx = hero.getX()
-            ry = hero.getY()
+            rx = hero.get_x()
+            ry = hero.get_y()
 
             door_x, door_y = 0, 0  # La distance jusqu'à la sortie de la salle
             while map[ry][rx + door_x] != 0:

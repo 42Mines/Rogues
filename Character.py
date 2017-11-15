@@ -1,6 +1,7 @@
 from Weapon import Weapon
 
-class Person:
+
+class Character:
     x = 0
     y = 0
 
@@ -30,7 +31,7 @@ class Person:
     def fight(self, other):
         self.weapon.hit(other)
 
-    def takeDamages(self, damages):
+    def take_damages(self, damages):
         if self.armor is None:
             self.life -= damages
         else:
@@ -40,10 +41,10 @@ class Person:
             if self.armor.getLife() <= 0:
                 self.armor = None
 
-    def setArmor(self, armor):
+    def set_armor(self, armor):
         self.armor = armor
 
-    def setWeapon(self, weapon):
+    def set_weapon(self, weapon):
         self.weapon = weapon
 
     def unpack(self, item):
@@ -53,14 +54,17 @@ class Person:
         if item.contains == "coin":
             self.coins += item.config["amount"]
 
-    def setX(self, x):
+    def set_x(self, x):
         self.x = x
 
-    def setY(self, y):
+    def set_y(self, y):
         self.y = y
 
-    def getX(self):
+    def get_x(self):
         return self.x
 
-    def getY(self):
+    def get_y(self):
         return self.y
+
+    def get_display(self):
+        return self.display

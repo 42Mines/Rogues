@@ -33,9 +33,10 @@ class Character:
         self.display = conf["char"]
 
     def fight(self, other):
-        self.weapon.hit(other)
+        return self.weapon.hit(other)
 
     def take_damages(self, damages):
+        mem = self.life
         if self.armor is None:
             self.life -= damages
         else:
@@ -44,6 +45,8 @@ class Character:
 
             if self.armor.getLife() <= 0:
                 self.armor = None
+
+        return mem - self.life
 
     def set_armor(self, armor):
         self.armor = armor

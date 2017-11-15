@@ -10,5 +10,5 @@ class Weapon:
         self.instability = conf["instability"]
 
     def hit(self, person):
-        damages = min(1, rd.normal(self.damages, self.instability))
+        damages = max(1, rd.normal(self.damages, self.instability))
         return person.take_damages(damages)

@@ -91,7 +91,7 @@ def gen_map(hero, field):
             door_top = False
             if random() > 0.5:
                 door_top = True
-                door_y = randint(1, room_height) + room_y
+                door_y = randint(1, room_height-1) + room_y
                 door_x = room_x
 
                 field[door_y][door_x] = -3
@@ -99,7 +99,7 @@ def gen_map(hero, field):
                 link(field, door_x, door_y, target_x, target_y)
 
             if random() > 0.5 or not door_top:
-                door_x = randint(1, room_width) + room_x
+                door_x = randint(1, room_width-1) + room_x
                 door_y = room_y
 
                 field[door_y][door_x] = -3
@@ -109,13 +109,13 @@ def gen_map(hero, field):
             door_right = False
             if random() > 0.5:
                 door_right = True
-                door_y = randint(1, room_height) + room_y
+                door_y = randint(1, room_height-1) + room_y
                 door_x = room_x + room_width
 
                 field[door_y][door_x] = -3
 
             if random() > 0.5 or not door_right:
-                door_x = randint(1, room_width) + room_x
+                door_x = randint(1, room_width-1) + room_x
                 door_y = room_y + room_height
 
                 field[door_y][door_x] = -3

@@ -75,5 +75,9 @@ class Character:
 
     def get_type(self):
         return self.char_type
+
     def get_display(self):
         return self.display
+
+    def dist(self, other):
+        return abs(self.get_x() - other.get_x()) + abs(self.get_y() - other.get_y())

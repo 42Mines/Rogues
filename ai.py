@@ -12,9 +12,7 @@ def ai(ennemy, hero, field):
 
     dmg = 0
     if abs_x + abs_y < 8:
-        if abs_x == 1 or abs_y == 1:
-            ennemy.fight(hero)
-        elif hero_x - ennemy_x > 0 and field[ennemy_y][ennemy_x + 1] != 0:
+        if hero_x - ennemy_x > 0 and field[ennemy_y][ennemy_x + 1] != 0:
             ennemy.set_x(ennemy_x + 1)
         elif hero_x - ennemy_x < 0 and field[ennemy_y][ennemy_x + 1] != 0:
             ennemy.set_x(ennemy_x - 1)
@@ -32,6 +30,10 @@ def ai(ennemy, hero, field):
             ennemy.set_x(ennemy_x + 1)
         elif field[ennemy_y][ennemy_x - 1] != 0:
            ennemy.set_x(ennemy_x - 1)
+
+    if ennemy.get_x() == hero.get_x() and ennemy.get_y() == hero.get_y():
+        ennemy.set_x(ennemy_x)
+        ennemy.set_y(ennemy_y)
 		   
     return dmg
 

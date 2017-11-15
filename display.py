@@ -19,10 +19,11 @@ curses.cbreak()
 stdscr.keypad(True)
 
 field = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 1, 1, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
-         [0, 0, 3, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 3, 1, 1, 1, 0, 0],
-         [0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 1, 1, 1, 3, 2, 2, 2, 2, 2, 2, 2, 2, 3, 1, 1, 1, 0, 0],
+         [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 
@@ -30,19 +31,19 @@ def display(stdscr, field, caracters):
     max_x = len(field[0])
     max_y = len(field)
 
-    chars = [" ", ".", "*", "#", "x", "_", "|"]
+    chars = [" ", ".", "*", "#", "x", "-", "|"]
 
     for y in range(max_y):
         for x in range(max_x):
             if field[y][x] == 1:
-                if y - 1 > 0 and y + 1 < y and (field[y - 1][x] != 1 or field[y + 1][x] != 1):
-                    stdscr.addstr(y, x, chars[5])
-                elif x - 1 > 0 and x + 1 < x and (field[y][x - 1] != 1 or field[y][x + 1] != 1):
-                    stdscr.addstr(y, x, chars[6])
+                if y - 1 > 0 and y + 1 < max_y and (field[y - 1][x] == 0 or field[y + 1][x] == 0):
+                    stdscr.addstr(y + 1, x + 1, chars[5])
+                elif x - 1 > 0 and x + 1 <max_x and (field[y][x - 1] == 0 or field[y][x + 1] == 0):
+                    stdscr.addstr(y + 1, x + 1, chars[6])
                 else:
-                    stdscr.addstr(y, x, chars[field[y][x]])
+                    stdscr.addstr(y + 1, x + 1, chars[field[y][x]])
             else:
-                stdscr.addstr(y, x, chars[field[y][x]])
+                stdscr.addstr(y + 1, x + 1, chars[field[y][x]])
 
 
 display(stdscr, field, [])

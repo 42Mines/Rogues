@@ -18,7 +18,7 @@ def display(stdscr, field, characters, fullmode = False):
     field = [field[i][offset_x:max_x] for i in range(offset_y, max_y)]
     stdscr.addstr(height-1, 0, "grid {}x{}".format(len(field), len(field[0])))
 
-    chars = [" ", ".", "*", "#", "x", "-", "|"]
+    chars = [" ", ".", ":", "#", "x", "-", "|"]
 
     while len(field) < offset_y + 4 * height:
         field.append([0 for _ in range(len(field[0]))])

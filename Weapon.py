@@ -11,4 +11,4 @@ class Weapon:
 
     def hit(self, person):
         damages = min(1, rd.normal(self.damages, self.instability))
-        person.takeDamage(damages)
+        return person.takeDamage(damages)

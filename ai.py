@@ -28,7 +28,7 @@ def ai(ennemy, hero, field):
         elif direction == 2:
             ennemy.set_x(ennemy_x + 1)
         else:
-           ennemy.seyX(ennemy_x - 1)
+           ennemy.set_x(ennemy_x - 1)
 
     return dmg
 

@@ -19,19 +19,6 @@ stdscr.keypad(True)
          [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]"""
 
-<<<<<<< HEAD
-field =[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-
-=======
 field = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
          [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -42,7 +29,6 @@ field = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
->>>>>>> ec776e0241b4c70bb18c972b3a8b08b830d31dda
 
 hero = Character(3, 3, hero_conf)
 snake = Character(1, 1, ennemies_conf["snake"])
@@ -108,7 +94,6 @@ while True:
 
     if field[hero.get_y()][hero.get_x()] == 2 and count2 == 1:
         gen_map(hero, field)
-<<<<<<< HEAD
 
     for ennemy in ennemies:
         dmg = ai(ennemy, hero, field)
@@ -116,9 +101,6 @@ while True:
         stdscr.addstr(31, 0, "{} did {} damage to player".format(snake.get_type, dmg))
     
     stdscr.addstr(15, 0, "x = {} ; y = {} ; field = {}".format(hero.get_x(), hero.get_y(), field[hero.get_y()][hero.get_x()]))
-=======
-        stdscr.addstr(32, 0, "{}".format(count2))
->>>>>>> ec776e0241b4c70bb18c972b3a8b08b830d31dda
 
 # QExitiong curses
 curses.nocbreak()

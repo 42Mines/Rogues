@@ -8,14 +8,14 @@ def link(map, x1, y1, x2, y2):
     x, y = x1, y1
     rand_ref = random()
 
-    while x != x2 and y != y2:
+    while x != x2 or y != y2:
         if x == x2:
             y -= 1
-            map[y][x] = 2
+            map[y][x] = -2
 
         elif y == y2:
             x -= 1
-            map[y][x] = 2
+            map[y][x] = -2
 
         else:
             if random() > rand_ref:
@@ -23,14 +23,14 @@ def link(map, x1, y1, x2, y2):
             else:
                 y -= 1
 
-            map[y][x] = 2
+            map[y][x] = -2
 
 
 def gen_map(hero, field):
     density_to_achieve = 0.1  # The percentage we want to fill
-    area_to_scan = 30
+    area_to_scan = 10
+    safety = 20
 
-    safety = 10
     if len(field[0]) - hero.get_x() < safety * area_to_scan:
         for i in range(len(field[0])):
             field[i] = field[i] + [0 for _ in range(safety * area_to_scan)]
@@ -56,7 +56,8 @@ def gen_map(hero, field):
 
     if density < density_to_achieve / 3:
 
-        rooms_to_add = randint(1, 4)
+        rooms_to_add = randint(1, 2)
+        #rooms_to_add = 1
 
         for i in range(rooms_to_add):
             rx = hero.get_x()
@@ -77,32 +78,33 @@ def gen_map(hero, field):
 
             for x in range(room_width):
                 for y in range(room_height):
-                    field[room_y + y][room_x + x] = 1
+                    field[room_y + y][room_x + x] = -1
 
             doors = []
 
             for y in range(len(field)):
                 for x in range(len(field[0])):
-                    if field[y][x] == 3:
+                    if field[y][x] == -3:
                         doors.append((x, y))
 
+            target_x, target_y = hero.get_x(), hero.get_y()
             door_top = False
             if random() > 0.5:
                 door_top = True
                 door_y = randint(1, room_height) + room_y
                 door_x = room_x
 
-                field[door_y][door_x] = 3
+                field[door_y][door_x] = -3
                 #target_x, target_y = choice(doors)
-                #link(field, door_x, door_y, target_x, target_y)
+                link(field, door_x, door_y, target_x, target_y)
 
             if random() > 0.5 or not door_top:
                 door_x = randint(1, room_width) + room_x
                 door_y = room_y
 
-                field[door_y][door_x] = 3
+                field[door_y][door_x] = -3
                 #target_x, target_y = choice(doors)
-                #link(field, door_x, door_y, target_x, target_y)
+                link(field, door_x, door_y, target_x, target_y)
 
             door_right = False
             if random() > 0.5:
@@ -110,10 +112,10 @@ def gen_map(hero, field):
                 door_y = randint(1, room_height) + room_y
                 door_x = room_x + room_width
 
-                field[door_y][door_x] = 3
+                field[door_y][door_x] = -3
 
             if random() > 0.5 or not door_right:
                 door_x = randint(1, room_width) + room_x
                 door_y = room_y + room_height
 
-                field[door_y][door_x] = 3
+                field[door_y][door_x] = -3

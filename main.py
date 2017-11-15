@@ -55,6 +55,7 @@ def checkEnnemies(characters):
 while True:
     display(stdscr, field, characters, fullmode)
     key = stdscr.getch()
+    height, width = stdscr.getmaxyx()
 
     if key == ord('q'):
         break
@@ -104,6 +105,7 @@ while True:
                 field[i][j] = abs(field[i][j])
 
     field[hero.get_y()][hero.get_x()] = abs(field[hero.get_y()][hero.get_x()])
+    stdscr.addstr(height - 5, 0, "|Life: {} | XP: {} | Gold: {}|".format(hero.get_life(), hero.get_xp(), hero.get_coins()))
 
     count2 = 0
     for i in range(-1, 2):

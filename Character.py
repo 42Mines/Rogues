@@ -75,5 +75,15 @@ class Character:
 
     def get_type(self):
         return self.char_type
+
     def get_display(self):
         return self.display
+
+    def get_life(self):
+        return self.life
+
+    def get_coins(self):
+        return self.coins
+
+    def get_xp(self):
+        return self.xp

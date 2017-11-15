@@ -1,5 +1,4 @@
-import Weapon
-
+from Weapon import Weapon
 
 class People:
     x = 0
@@ -12,8 +11,9 @@ class People:
 
     weapon = None
     armor = None
+    inventory = dict()
 
-    inventory = {weapons: [], armor: []}
+    inventory = {"weapons": [], "armor": []}
 
     def __init__(self, x, y, conf):
         self.x = x
@@ -23,7 +23,7 @@ class People:
         self.xp_reward = conf["xp_reward"]
 
         self.weapon = Weapon(conf["weapon"])
-        inventory["weapons"] = self.weapon
+        self.inventory["weapons"] = self.weapon
 
         self.life = conf["life"]
 
@@ -31,13 +31,13 @@ class People:
         self.weapon.hit(other)
 
     def takeDamages(self, damages):
-        if self.armor == None:
+        if self.armor is None:
             self.life -= damages
         else:
-            self.life -= (min(damages - armor.getProtection()), 1)
-            armor.use()
+            self.life -= (min(damages - self.armor.getProtection()), 1)
+            self.armor.use()
 
-            if armor.getLife() <= 0:
+            if self.armor.getLife() <= 0:
                 self.armor = None
 
     def setArmor(self, armor):
@@ -48,7 +48,7 @@ class People:
 
     def unpack(self, item):
         if item.contains == "weapon":
-            self.weapons.push(Weapon(item.config))
+            self.inventory["weapons"].append(Weapon(item.config))
 
         if item.contains == "coin":
             self.coins += item.config["amount"]

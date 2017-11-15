@@ -1,30 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    display.py                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jfarinha <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/15 12:08:24 by jfarinha          #+#    #+#              #
-#    Updated: 2017/11/15 13:33:19 by jfarinha         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-import curses
-
-# Initialisation of curses
-stdscr = curses.initscr()
-curses.noecho()
-curses.cbreak()
-stdscr.keypad(True)
-
-field = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 1, 1, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
-         [0, 0, 1, 1, 1, 3, 2, 2, 2, 2, 2, 2, 2, 2, 3, 1, 1, 1, 0, 0],
-         [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 
 def display(stdscr, field, caracters):
@@ -44,20 +17,4 @@ def display(stdscr, field, caracters):
                     stdscr.addstr(y + 1, x + 1, chars[field[y][x]])
             else:
                 stdscr.addstr(y + 1, x + 1, chars[field[y][x]])
-
-
-display(stdscr, field, [])
-
-
-while True:
-    key = stdscr.getch()
-    print(key)
-    if key == ord('a'):
-        break
-
-# QExitiong curses
-curses.nocbreak()
-stdscr.keypad(False)
-curses.echo()
-curses.endwin()
 

@@ -1,14 +1,14 @@
-import np.random.normal as normal
+import numpy.random as rd
+
 
 class Weapon:
+    damages = 10
+    instability = 1
 
-	damages = 10
-	instability = 1
+    def __init__(self, conf):
+        self.damages = conf["damages"]
+        self.instability = conf["instability"]
 
-	def __init__(self, conf):
-		self.damages = conf["damages"]
-		self.instability = conf["instability"]
-
-	def hit(self, person):
-		damages = min(1, normal(damages, instability))
-		person.takeDamage(damages)
+    def hit(self, person):
+        damages = min(1, rd.normal(self.damages, self.instability))
+        person.takeDamage(damages)

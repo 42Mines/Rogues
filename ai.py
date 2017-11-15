@@ -21,15 +21,15 @@ def ai(ennemy, hero, field):
             ennemy.set_y(ennemy_y - 1)
     else:
         direction = randint(0, 4)
-        if direction == 0:
+        if direction == 0 and field[ennemy_y + 1][ennemy_x] != 0:
             ennemy.set_y(ennemy_y + 1)
-        elif direction == 1:
+        elif direction == 1 and field[ennemy_y - 1][ennemy_x] != 0:
             ennemy.set_y(ennemy_y - 1)
-        elif direction == 2:
+        elif direction == 2 and field[ennemy_y][ennemy_x + 1] != 0:
             ennemy.set_x(ennemy_x + 1)
-        else:
+        elif field[ennemy_y][ennemy_x - 1] != 0:
            ennemy.set_x(ennemy_x - 1)
-
+		   
     return dmg
 
 

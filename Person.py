@@ -52,3 +52,15 @@ class People:
 
         if item.contains == "coin":
             self.coins += item.config["amount"]
+
+    def setX(self, x):
+        self.x = x
+
+    def setY(self, y):
+        self.y = y
+
+    def getX(self):
+        return self.x
+
+    def getY(self):
+        return self.y

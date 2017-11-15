@@ -1,7 +1,8 @@
 
 import curses
 from display import *
-import Person
+from Person import Person
+from conf import hero_conf
 #from map import *
 
 # Initialisation of curses
@@ -19,7 +20,7 @@ field = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 
-hero = Person()
+hero = Person(5, 5, hero_conf)
 caracters = [hero]
 
 while True:
@@ -28,7 +29,16 @@ while True:
     if key == ord('q'):
         break
 
-    display(stdscr, field, [])
+    elif curses.KEY_UP:
+        hero.setY(hero.getY() + 1)
+    elif curses.KEY_DOWN:
+        hero.setY(hero.getY() - 1)
+    elif curses.KEY_LEFT:
+        hero.setX(hero.getX() + 1)
+    elif curses.KEY_RIGHT:
+        hero.setX(hero.getX() - 1)
+
+    display(stdscr, field, caracters)
 
 # QExitiong curses
 curses.nocbreak()

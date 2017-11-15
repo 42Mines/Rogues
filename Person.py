@@ -1,6 +1,6 @@
 from Weapon import Weapon
 
-class People:
+class Person:
     x = 0
     y = 0
 

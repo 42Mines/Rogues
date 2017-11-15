@@ -22,3 +22,4 @@ def display(stdscr, field, caracters):
             elif field[y][x] != 0:
                 stdscr.addstr(y, x, chars[field[y][x]])
 
+

@@ -24,3 +24,4 @@ def display(stdscr, field, caracters):
 
 	for character in characters:
         stdscr.addstr(character.get_y(), character.get_x(), character.get_display())
+

@@ -81,3 +81,12 @@ class Character:
 
     def dist(self, other):
         return abs(self.get_x() - other.get_x()) + abs(self.get_y() - other.get_y())
+
+    def get_life(self):
+        return self.life
+
+    def get_coins(self):
+        return self.coins
+
+    def get_xp(self):
+        return self.xp

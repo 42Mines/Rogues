@@ -37,6 +37,21 @@ ennemies = [snake]
 
 fullmode = False
 
+def checkEnnemies(characters):
+    height, width = stdscr.getmaxyx()
+    i = 0
+
+    for c in characters:
+        if c != hero and c.get_x() == hero.get_x() and c.get_y() == hero.get_y():
+            hero.fight(c)
+            dmg = c.fight(hero)
+            stdscr.addstr(height - 6 - i, 0, "{} did {} damage to player".format(snake.get_type(), dmg))
+
+            return True
+
+    return False
+
+
 while True:
     display(stdscr, field, characters, fullmode)
     key = stdscr.getch()
@@ -52,12 +67,20 @@ while True:
 
     elif key == curses.KEY_UP and field[hero.get_y() - 1][hero.get_x()] != 0:
         hero.set_y(hero.get_y() - 1)
+        if checkEnnemies(characters):
+            hero.set_y(hero.get_y() + 1)
     elif key == curses.KEY_DOWN and field[hero.get_y() + 1][hero.get_x()] != 0:
         hero.set_y(hero.get_y() + 1)
+        if checkEnnemies(characters):
+            hero.set_y(hero.get_y() - 1)
     elif key == curses.KEY_LEFT and field[hero.get_y()][hero.get_x() - 1] != 0:
         hero.set_x(hero.get_x() - 1)
+        if checkEnnemies(characters):
+            hero.set_x(hero.get_x() + 1)
     elif key == curses.KEY_RIGHT and field[hero.get_y()][hero.get_x() + 1] != 0:
         hero.set_x(hero.get_x() + 1)
+        if checkEnnemies(characters):
+            hero.set_x(hero.get_x() - 1)
 
     if field[hero.get_y()][hero.get_x()] == -1:
         y, x = hero.get_y(), hero.get_x()
@@ -96,11 +119,7 @@ while True:
         gen_map(hero, field)
 
     for ennemy in ennemies:
-        dmg = ai(ennemy, hero, field)
-       # if (dmg != 0):
-        stdscr.addstr(31, 0, "{} did {} damage to player".format(snake.get_type, dmg))
-    
-    stdscr.addstr(15, 0, "x = {} ; y = {} ; field = {}".format(hero.get_x(), hero.get_y(), field[hero.get_y()][hero.get_x()]))
+        ai(ennemy, hero, field)
 
 # QExitiong curses
 curses.nocbreak()
